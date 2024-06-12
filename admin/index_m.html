@@ -118,7 +118,7 @@
     }
 
     function fillSonosDevices(elem, current) {
-        socket.emit('getObjectView', 'system', 'channel', {startkey: 'sonos.', endkey: 'sonos.\u9999'}, function (err, res) {
+        socket.emit('getObjectViewAsync', 'system', 'channel', {startkey: 'sonos.', endkey: 'sonos.\u9999'}, function (err, res) {
             if (!err && res) {
                 for (var i = 0; i < res.rows.length; i++) {
                     var name = res.rows[i].value && res.rows[i].value.common && res.rows[i].value.common.name;
@@ -135,7 +135,7 @@
     }
 
     function fillHeosDevices(elem, current) {
-        socket.emit('getObjectView', 'system', 'channel', {startkey: 'heos.', endkey: 'heos.\u9999'}, function (err, res) {
+        socket.emit('getObjectViewAsync', 'system', 'channel', {startkey: 'heos.', endkey: 'heos.\u9999'}, function (err, res) {
             if (!err && res) {
                 for (var i = 0; i < res.rows.length; i++) {
                     var name = res.rows[i].value && res.rows[i].value.common && res.rows[i].value.common.name;
@@ -153,7 +153,7 @@
     }
 
     function fillMpdDevice(elem, current) {
-        socket.emit('getObjectView', 'system', 'instance', {startkey: 'system.adapter.mpd.', endkey: 'system.adapter.mpd.\u9999'}, function (err, res) {
+        socket.emit('getObjectViewAsync', 'system', 'instance', {startkey: 'system.adapter.mpd.', endkey: 'system.adapter.mpd.\u9999'}, function (err, res) {
             if (!err && res) {
                 for (var i = 0; i < res.rows.length; i++) {
 					var n =  res.rows[i].id.replace('system.adapter.', '');
@@ -167,7 +167,7 @@
     }
 
     function fillChromecastDevices(elem, current) {
-        socket.emit('getObjectView', 'system', 'device', {startkey: 'chromecast.', endkey: 'chromecast.\u9999'}, function (err, res) {
+        socket.emit('getObjectViewAsync', 'system', 'device', {startkey: 'chromecast.', endkey: 'chromecast.\u9999'}, function (err, res) {
             if (!err && res) {
                 for (var i = 0; i < res.rows.length; i++) {
                     $(elem).append('<option value="' + res.rows[i].id + '">' + res.rows[i].id + '</option>');
@@ -304,7 +304,7 @@
     }
 
     function fillWebServices(elem, current, type, webServer) {
-        socket.emit('getObjectView', 'system', 'instance', {startkey: 'system.adapter.web.', endkey: 'system.adapter.web.\u9999'}, function (err, res) {
+        socket.emit('getObjectViewAsync', 'system', 'instance', {startkey: 'system.adapter.web.', endkey: 'system.adapter.web.\u9999'}, function (err, res) {
             if (!err && res) {
                 webServers = res.rows;
                 for (var i = 0; i < res.rows.length; i++) {
